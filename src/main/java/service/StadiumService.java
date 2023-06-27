@@ -12,22 +12,11 @@ public class StadiumService {
     private Connection connection = DBConnection.getInstance();
     private StadiumDAO stadiumDAO = new StadiumDAO(connection);
 
-    public void createStadium(String name) throws SQLException {
-        stadiumDAO.createStaduim(name);
+    public int createStadium(String name) throws SQLException {
+        return stadiumDAO.createStaduim(name);
     }
 
     public List<Stadium> AllStadiumList() throws SQLException{
         return stadiumDAO.getAllStadium();
     }
-//        try {
-//            stadiumDAO.createStaduim("잠실");
-//        }catch (SQLException e){
-//            e.printStackTrace();
-//        }
-//        try {
-//            List<Stadium> stadiumList = stadiumDAO.getAllStadium();
-//            System.out.println(stadiumList);
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
 }

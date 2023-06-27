@@ -1,10 +1,9 @@
 import db.DBConnection;
 import dto.StadiumRequestDTO;
+import dto.TeamRequestDTO;
 import model.stadium.Stadium;
-import model.stadium.StadiumDAO;
-import model.team.Team;
-import model.team.TeamDAO;
 import service.StadiumService;
+import service.TeamService;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -15,30 +14,46 @@ public class BaseballApp {
     public static void main(String[] args) throws SQLException {
         Connection connection = DBConnection.getInstance();
         StadiumService stadiumService = new StadiumService();
+        TeamService teamService = new TeamService();
         Scanner scanner = new Scanner(System.in);
         System.out.println("어떤 기능을 요청하시겠습니까?");
         String input = scanner.next();
         if(input.equals("야구장목록")){
             List<Stadium> stadiumLsit = stadiumService.AllStadiumList();
-            System.out.println(stadiumLsit);
+            int i=0;
+            for(Stadium data: stadiumLsit){
+                System.out.println(data.getStadiumId() +". "+data.getName());
+                i++;
+            }
         }
         if(input.equals("팀목록")){
-            //팀리스트 출력
-            return;
+            List<TeamRequestDTO.TeamSelectReqDTO> teamList = teamService.AllTeamList();
+            for(TeamRequestDTO.TeamSelectReqDTO data: teamList){
+                System.out.println(data.getId()+". "+data.getStadiumName()+" "+data.getTeamName());
+
+            }
         }
         String[] str = input.split("\\?");
         if(str[0].equals("야구장등록")){
             String[] temp = str[1].split("=");
             StadiumRequestDTO stadiumRequestDTO = new StadiumRequestDTO();
             stadiumRequestDTO.setName(temp[1]);
-            stadiumService.createStadium(stadiumRequestDTO.getName());
-            System.out.println(stadiumRequestDTO.getName());
+            int result = stadiumService.createStadium(stadiumRequestDTO.getName());
+            if(result == 1){
+                System.out.println("성공");
+            }
         }
         if(str[0].equals("팀등록")){
             String[] temp = str[1].split("&");
             String[] stadiumIdsplit = temp[0].split("=");
             String[] teamNamesplit = temp[1].split("=");
-
+            TeamRequestDTO.TeamInsertReqDTO teamInsertReqDTO = new TeamRequestDTO.TeamInsertReqDTO();
+            teamInsertReqDTO.setStadiumId(Integer.parseInt(stadiumIdsplit[1]));
+            teamInsertReqDTO.setTeamName(teamNamesplit[1]);
+            int result = teamService.createTeam(teamInsertReqDTO.getStadiumId(), teamInsertReqDTO.getTeamName());
+            if(result == 1){
+                System.out.println("성공");
+            }
         }
 
 

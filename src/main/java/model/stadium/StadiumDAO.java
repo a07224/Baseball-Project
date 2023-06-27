@@ -11,12 +11,14 @@ public class StadiumDAO {
         this.connection = connection;
     }
 
-    public void createStaduim(String name)throws SQLException{
+    public int createStaduim(String name)throws SQLException{
+        int result = 0;
         String query = "INSERT INTO stadium_tb (name, stadium_created_at) VALUES (?, now())";
         try(PreparedStatement statement = connection.prepareStatement(query)){
             statement.setString(1, name);
-            statement.executeUpdate();
+            result = statement.executeUpdate();
         }
+        return result;
     }
 
     public List<Stadium> getAllStadium() throws SQLException{
@@ -34,9 +36,11 @@ public class StadiumDAO {
     }
 
     private Stadium buildStadiumFromResultSet(ResultSet resultSet) throws SQLException{
+        int stadiumId = resultSet.getInt("stadium_id");
         String name = resultSet.getString("name");
         Timestamp stadiumCreatedAt = resultSet.getTimestamp("stadium_created_at");
         return Stadium.builder()
+                .stadiumId(stadiumId)
                 .name(name)
                 .stadiumCreatedAt(stadiumCreatedAt)
                 .build();
