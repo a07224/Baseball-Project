@@ -39,6 +39,18 @@ public class PlayerDAO {
         return players;
     }
 
+    public int updatePlayer(int playerId)throws SQLException{
+        int result = 0;
+        String query = "UPDATE player_tb SET team_id=null where id = ?";
+        try(PreparedStatement statement = connection.prepareStatement(query)){
+            statement.setInt(1, playerId);
+            result = statement.executeUpdate();
+        }catch (Exception e){
+            System.out.println("안됨?");
+        }
+        return result;
+    }
+
     private Player buildPlayerFromResultSet(ResultSet resultSet) throws SQLException{
         int id = resultSet.getInt("id");
         int teamId = resultSet.getInt("team_id");

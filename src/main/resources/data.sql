@@ -19,3 +19,5 @@ select * from player_tb;
 SELECT * FROM player_tb where team_id = 1;
 
 SELECT team_name FROM team_tb where id=1;
+select * from out_player_tb;
+UPDATE player_tb SET team_id=1 where id = 1;

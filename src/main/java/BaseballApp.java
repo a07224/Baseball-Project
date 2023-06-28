@@ -1,10 +1,13 @@
 import db.DBConnection;
+import dto.OutPlayerRequestDTO;
 import dto.PlayerRequestDTO;
 import dto.StadiumRequestDTO;
 import dto.TeamRequestDTO;
+import model.outPlayer.OutPlayer;
 import model.player.Player;
 import model.stadium.Stadium;
 import model.team.Team;
+import service.OutPlayerService;
 import service.PlayerService;
 import service.StadiumService;
 import service.TeamService;
@@ -20,9 +23,11 @@ public class BaseballApp {
         StadiumService stadiumService = new StadiumService();
         TeamService teamService = new TeamService();
         PlayerService playerService = new PlayerService();
+        OutPlayerService outPlayerService = new OutPlayerService();
         Scanner scanner = new Scanner(System.in);
         System.out.println("어떤 기능을 요청하시겠습니까?");
         String input = scanner.next();
+
         if(input.equals("야구장목록")){
             List<Stadium> stadiumLsit = stadiumService.AllStadiumList();
             int i=0;
@@ -31,6 +36,7 @@ public class BaseballApp {
                 i++;
             }
         }
+
         if(input.equals("팀목록")){
             List<TeamRequestDTO.TeamSelectReqDTO> teamList = teamService.AllTeamList();
             int i=1;
@@ -39,6 +45,16 @@ public class BaseballApp {
                 i++;
             }
         }
+
+        if(input.equals("퇴출목록")){
+            List<TeamRequestDTO.TeamSelectReqDTO> teamList = teamService.AllTeamList();
+            int i=1;
+            for(TeamRequestDTO.TeamSelectReqDTO data: teamList){
+                System.out.println(i+". "+data.getStadiumName()+" "+data.getTeamName());
+                i++;
+            }
+        }
+
         String[] str = input.split("\\?");
         if(str[0].equals("선수목록")){
             String[] temp = str[1].split("=");
@@ -81,6 +97,19 @@ public class BaseballApp {
             playerRequestDTO.setName(playerNamesplit[1]);
             playerRequestDTO.setPosition(playerPositionsplit[1]);
             int result = playerService.insertPlayer(playerRequestDTO.getTeamId(), playerRequestDTO.getName(), playerRequestDTO.getPosition());
+            if(result == 1){
+                System.out.println("성공");
+            }
+        }
+
+        if(str[0].equals("퇴출등록")){
+            String[] temp = str[1].split("&");
+            String[] playerIdsplit = temp[0].split("=");
+            String[] reasonsplit = temp[1].split("=");
+            OutPlayerRequestDTO outPlayerRequestDTO = new OutPlayerRequestDTO();
+            outPlayerRequestDTO.setPlayerId(Integer.parseInt(playerIdsplit[1]));
+            outPlayerRequestDTO.setReason(reasonsplit[1]);
+            int result = outPlayerService.insertOutPlayer(outPlayerRequestDTO.getPlayerId(), outPlayerRequestDTO.getReason());
             if(result == 1){
                 System.out.println("성공");
             }

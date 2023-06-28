@@ -1,0 +1,22 @@
+package service;
+
+import db.DBConnection;
+import model.outPlayer.OutPlayerDAO;
+import model.player.PlayerDAO;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+
+public class OutPlayerService {
+    private Connection connection = DBConnection.getInstance();
+    private OutPlayerDAO outPlayerDAO = new OutPlayerDAO(connection);
+    private PlayerDAO playerDAO = new PlayerDAO(connection);
+    public int insertOutPlayer(int playerId, String reason) throws SQLException {
+        int result = playerDAO.updatePlayer(playerId);
+        if(result == 0){
+            System.out.println("업데이트 실패");
+            return 0;
+        }
+        return outPlayerDAO.insertOutPlayer(playerId, reason);
+    }
+}
