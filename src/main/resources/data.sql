@@ -21,3 +21,5 @@ SELECT * FROM player_tb where team_id = 1;
 SELECT team_name FROM team_tb where id=1;
 select * from out_player_tb;
 UPDATE player_tb SET team_id=1 where id = 1;
+
+SELECT player_tb.id, player_tb.name, player_tb.position, out_player_tb.reason, out_player_tb.out_player_created_at FROM player_tb left outer join out_player_tb ON out_player_tb.player_id=player_tb.id;

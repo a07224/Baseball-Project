@@ -1,8 +1,11 @@
 package model.outPlayer;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import dto.OutPlayerRequestDTO;
+import dto.TeamRequestDTO;
+
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class OutPlayerDAO {
     private Connection connection;
@@ -19,6 +22,35 @@ public class OutPlayerDAO {
             result = statement.executeUpdate();
         }
         return result;
+    }
+
+    public List<OutPlayerRequestDTO.OutPlayerSelectDTO> getAllOutPlayer() throws SQLException{
+        List<OutPlayerRequestDTO.OutPlayerSelectDTO> outPlayers = new ArrayList<>();
+        String query = "SELECT player_tb.id, player_tb.name, player_tb.position, out_player_tb.reason, out_player_tb.out_player_created_at FROM player_tb left outer join out_player_tb ON out_player_tb.player_id=player_tb.id";
+        try(Statement statement = connection.createStatement()) {
+            try (ResultSet resultSet = statement.executeQuery(query)){
+                while (resultSet.next()){
+                    OutPlayerRequestDTO.OutPlayerSelectDTO outPlayerSelectDTO = buildOutPlayerFromResultSet(resultSet);
+                    outPlayers.add(outPlayerSelectDTO);
+                }
+            }
+        }
+        return outPlayers;
+    }
+
+    private OutPlayerRequestDTO.OutPlayerSelectDTO buildOutPlayerFromResultSet(ResultSet resultSet) throws SQLException {
+        int id = resultSet.getInt("id");
+        String name = resultSet.getString("name");
+        String position = resultSet.getString("position");
+        String reason = resultSet.getString("reason");
+        Timestamp outPlayerCreatedAt = resultSet.getTimestamp("out_player_created_at");
+        return OutPlayerRequestDTO.OutPlayerSelectDTO.builder()
+                .id(id)
+                .name(name)
+                .position(position)
+                .reason(reason)
+                .outPlayerCreatedAt(outPlayerCreatedAt)
+                .build();
     }
 
 }

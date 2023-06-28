@@ -47,11 +47,9 @@ public class BaseballApp {
         }
 
         if(input.equals("퇴출목록")){
-            List<TeamRequestDTO.TeamSelectReqDTO> teamList = teamService.AllTeamList();
-            int i=1;
-            for(TeamRequestDTO.TeamSelectReqDTO data: teamList){
-                System.out.println(i+". "+data.getStadiumName()+" "+data.getTeamName());
-                i++;
+            List<OutPlayerRequestDTO.OutPlayerSelectDTO> outPlayerList = outPlayerService.selectOutPlayer();
+            for(OutPlayerRequestDTO.OutPlayerSelectDTO data: outPlayerList){
+                System.out.println(data.getId()+" "+data.getName()+" "+data.getPosition()+" "+data.getReason()+" "+data.getOutPlayerCreatedAt());
             }
         }
 
@@ -106,10 +104,10 @@ public class BaseballApp {
             String[] temp = str[1].split("&");
             String[] playerIdsplit = temp[0].split("=");
             String[] reasonsplit = temp[1].split("=");
-            OutPlayerRequestDTO outPlayerRequestDTO = new OutPlayerRequestDTO();
-            outPlayerRequestDTO.setPlayerId(Integer.parseInt(playerIdsplit[1]));
-            outPlayerRequestDTO.setReason(reasonsplit[1]);
-            int result = outPlayerService.insertOutPlayer(outPlayerRequestDTO.getPlayerId(), outPlayerRequestDTO.getReason());
+            OutPlayerRequestDTO.OutPlayerInsertDTO outPlayerInsertDTO = new OutPlayerRequestDTO.OutPlayerInsertDTO();
+            outPlayerInsertDTO.setPlayerId(Integer.parseInt(playerIdsplit[1]));
+            outPlayerInsertDTO.setReason(reasonsplit[1]);
+            int result = outPlayerService.insertOutPlayer(outPlayerInsertDTO.getPlayerId(), outPlayerInsertDTO.getReason());
             if(result == 1){
                 System.out.println("성공");
             }
