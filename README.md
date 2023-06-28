@@ -7,3 +7,4 @@
 4. stadium, team, player service 생성
    
 ### 김지나
+1. player, outPlayer 테이블 생성
