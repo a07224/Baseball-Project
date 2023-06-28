@@ -1,6 +1,7 @@
 package model.team;
 
 import dto.TeamRequestDTO;
+import model.player.Player;
 import model.stadium.Stadium;
 
 import java.sql.*;
@@ -9,7 +10,6 @@ import java.util.List;
 
 public class TeamDAO {
     private Connection connection;
-    //private TeamRequestDTO.TeamSelectReqDTO teamSelectReqDTO;
 
     public TeamDAO(Connection connection) {
         this.connection = connection;
@@ -38,6 +38,26 @@ public class TeamDAO {
             }
         }
         return teams;
+    }
+
+    public Team findTeamNameById(int id) throws SQLException{
+        String query = "SELECT * FROM team_tb where id=?";
+        try(PreparedStatement statement = connection.prepareStatement(query)){
+            statement.setInt(1,id);
+            try (ResultSet resultSet = statement.executeQuery()){
+                if (resultSet.next()){
+                    return Team.builder()
+                            .id(resultSet.getInt("id"))
+                            .stadiumId(resultSet.getInt("stadium_id"))
+                            .teamName(resultSet.getString("team_name"))
+                            .teamCreatedAt(resultSet.getTimestamp("team_created_at"))
+                            .build();
+                }
+            }
+        }catch (Exception e){
+            System.out.println("x");
+        }
+        return null;
     }
 
     private TeamRequestDTO.TeamSelectReqDTO buildTeamFromResultSet(ResultSet resultSet) throws SQLException{

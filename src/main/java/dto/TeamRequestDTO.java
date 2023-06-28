@@ -6,6 +6,7 @@ import java.sql.Timestamp;
 
 
 public class TeamRequestDTO {
+
     @Getter
     @Setter
     @NoArgsConstructor
@@ -24,6 +25,5 @@ public class TeamRequestDTO {
         private String stadiumName;
         private String teamName;
     }
-
 
 }

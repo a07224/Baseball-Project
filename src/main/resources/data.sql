@@ -7,4 +7,15 @@ select * from stadium_tb;
 select * from team_tb;
 
 SELECT team_tb.id, stadium_tb.name, team_tb.team_name FROM team_tb JOIN stadium_tb ON team_tb.stadium_id = stadium_tb.stadium_id;
+set FOREIGN_KEY_CHECKS = 0;
+TRUNCATE TABLE stadium_tb;
 
+TRUNCATE TABLE team_tb;
+
+delete from team_tb where id>1;
+
+select * from player_tb;
+
+SELECT * FROM player_tb where team_id = 1;
+
+SELECT team_name FROM team_tb where id=1;

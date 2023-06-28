@@ -22,4 +22,8 @@ public class TeamService {
     public List<TeamRequestDTO.TeamSelectReqDTO> AllTeamList() throws SQLException {
         return teamDAO.getAllTeam();
     }
+
+    public Team findTeamNameById(int id) throws SQLException {
+        return teamDAO.findTeamNameById(id);
+    }
 }
