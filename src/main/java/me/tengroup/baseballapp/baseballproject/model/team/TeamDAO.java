@@ -1,8 +1,6 @@
-package model.team;
+package me.tengroup.baseballapp.baseballproject.model.team;
 
-import dto.TeamRequestDTO;
-import model.player.Player;
-import model.stadium.Stadium;
+import me.tengroup.baseballapp.baseballproject.data.dto.TeamRequestDTO;
 
 import java.sql.*;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package model.outPlayer;
+package me.tengroup.baseballapp.baseballproject.model.outPlayer;
 
 import lombok.Builder;
 import lombok.Getter;

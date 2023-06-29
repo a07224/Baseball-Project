@@ -1,8 +1,7 @@
-package model.player;
+package me.tengroup.baseballapp.baseballproject.model.player;
 
 import lombok.Builder;
 import lombok.Getter;
-import lombok.Setter;
 import lombok.ToString;
 
 import java.sql.Timestamp;

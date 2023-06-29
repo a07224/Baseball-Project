@@ -1,14 +1,17 @@
-package service;
+package me.tengroup.baseballapp.baseballproject.service;
 
-import db.DBConnection;
-import dto.OutPlayerRequestDTO;
-import model.outPlayer.OutPlayerDAO;
-import model.player.PlayerDAO;
+import lombok.RequiredArgsConstructor;
+import me.tengroup.baseballapp.baseballproject.data.db.DBConnection;
+import me.tengroup.baseballapp.baseballproject.data.dto.OutPlayerRequestDTO;
+import me.tengroup.baseballapp.baseballproject.model.outPlayer.OutPlayerDAO;
+import me.tengroup.baseballapp.baseballproject.model.player.PlayerDAO;
+import org.springframework.stereotype.Service;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
-
+@RequiredArgsConstructor
+@Service
 public class OutPlayerService {
     private Connection connection = DBConnection.getInstance();
     private OutPlayerDAO outPlayerDAO = new OutPlayerDAO(connection);

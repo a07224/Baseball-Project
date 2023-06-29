@@ -1,4 +1,4 @@
-package model.stadium;
+package me.tengroup.baseballapp.baseballproject.model.stadium;
 
 import lombok.Builder;
 import lombok.Getter;

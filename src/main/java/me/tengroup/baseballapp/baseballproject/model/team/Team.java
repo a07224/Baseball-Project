@@ -1,9 +1,8 @@
-package model.team;
+package me.tengroup.baseballapp.baseballproject.model.team;
 
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
-import model.stadium.Stadium;
 
 import java.sql.Timestamp;
 

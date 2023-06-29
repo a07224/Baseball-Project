@@ -1,4 +1,4 @@
-package model.stadium;
+package me.tengroup.baseballapp.baseballproject.model.stadium;
 
 import java.sql.*;
 import java.util.ArrayList;

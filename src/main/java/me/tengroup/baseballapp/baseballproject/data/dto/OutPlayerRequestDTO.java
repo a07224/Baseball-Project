@@ -1,11 +1,13 @@
-package dto;
+package me.tengroup.baseballapp.baseballproject.data.dto;
 
 
 import lombok.*;
 
 import java.sql.Timestamp;
+
 public class OutPlayerRequestDTO {
 
+    @Data
     @Getter
     @Setter
     @Builder
@@ -15,11 +17,13 @@ public class OutPlayerRequestDTO {
         private int playerId;
         private String reason;
     }
+
+    @Data
     @Getter
     @Setter
+    @Builder
     @NoArgsConstructor
     @AllArgsConstructor
-    @Builder
     public static class OutPlayerSelectDTO{
         private int id;
         private String name;
