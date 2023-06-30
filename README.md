@@ -8,3 +8,4 @@
    
 ### 김지나
 1. player, outPlayer 테이블 생성
+2. player, position list
