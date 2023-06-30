@@ -1,14 +1,17 @@
-package me.tengroup.baseballapp.baseballproject.data.domain;
+package me.tengroup.baseballapp.baseballproject.data.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import me.tengroup.baseballapp.baseballproject.model.stadium.Stadium;
 
+@Data
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class StadiumRequestDTO {
     private String name;
+
+    public Stadium toEntity() {
+        return Stadium.builder().name(name).build();
+    }
 }
