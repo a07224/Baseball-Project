@@ -32,10 +32,10 @@ public class PlayerService {
     public Query positionQuery() {
             StringBuffer mb = new StringBuffer();
             mb.append("select p.position as 'position', ");
-            mb.append("GROUP_CONCAT((CASE WHEN p.teamId = 11 THEN p.playerName ELSE null END)) as 'lotte', ");
-            mb.append("GROUP_CONCAT((CASE WHEN p.teamId = 11 THEN p.playerName ELSE null END)) as 'NC', ");
-            mb.append("GROUP_CONCAT((CASE WHEN p.teamId = 11 THEN p.playerName ELSE null END)) as 'kia', ");
-            mb.append("GROUP_CONCAT((CASE WHEN p.teamId = 11 THEN p.playerName ELSE null END)) as 'haitai', ");
+            mb.append("GROUP_CONCAT((CASE WHEN p.teamId = 1 THEN p.playerName ELSE null END)) as 'lotte', ");
+            mb.append("GROUP_CONCAT((CASE WHEN p.teamId = 2 THEN p.playerName ELSE null END)) as 'NC', ");
+            mb.append("GROUP_CONCAT((CASE WHEN p.teamId = 3 THEN p.playerName ELSE null END)) as 'kia', ");
+            mb.append("GROUP_CONCAT((CASE WHEN p.teamId = 4 THEN p.playerName ELSE null END)) as 'haitai', ");
             mb.append("from player p GROUP BY p.position");
             Query query = (Query) em.createNativeQuery(mb.toString());
             return query;
