@@ -1,10 +1,12 @@
-package me.tengroup.baseballapp.baseballproject.data.domain;
+package me.tengroup.baseballapp.baseballproject.data.dto;
 
 import lombok.*;
+import me.tengroup.baseballapp.baseballproject.model.stadium.Stadium;
+import me.tengroup.baseballapp.baseballproject.model.team.Team;
 
 
 public class TeamRequestDTO {
-
+    @Data
     @Getter
     @Setter
     @NoArgsConstructor
@@ -12,7 +14,16 @@ public class TeamRequestDTO {
     public static class TeamInsertReqDTO{
         private int stadiumId;
         private String teamName;
+
+        public Team toEntity() {
+            return Team.builder()
+                    .teamName(teamName)
+                    .stadiumId(Stadium.builder().stadiumId(stadiumId).build().getStadiumId())
+                    .build();
+        }
     }
+
+    @Data
     @Getter
     @Setter
     @Builder
