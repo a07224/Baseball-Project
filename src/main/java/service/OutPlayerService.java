@@ -14,11 +14,7 @@ public class OutPlayerService {
     private OutPlayerDAO outPlayerDAO = new OutPlayerDAO(connection);
     private PlayerDAO playerDAO = new PlayerDAO(connection);
     public int insertOutPlayer(int playerId, String reason) throws SQLException {
-        int result = playerDAO.updatePlayer(playerId);
-        if(result == 0){
-            System.out.println("업데이트 실패");
-            return 0;
-        }
+        playerDAO.updatePlayer(playerId);
         return outPlayerDAO.insertOutPlayer(playerId, reason);
     }
 

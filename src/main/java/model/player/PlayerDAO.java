@@ -46,7 +46,7 @@ public class PlayerDAO {
             statement.setInt(1, playerId);
             result = statement.executeUpdate();
         }catch (Exception e){
-            System.out.println("안됨?");
+            System.out.println("선수 업데이트 실패");
         }
         return result;
     }

@@ -26,7 +26,7 @@ public class OutPlayerDAO {
 
     public List<OutPlayerRequestDTO.OutPlayerSelectDTO> getAllOutPlayer() throws SQLException{
         List<OutPlayerRequestDTO.OutPlayerSelectDTO> outPlayers = new ArrayList<>();
-        String query = "SELECT player_tb.id, player_tb.name, player_tb.position, out_player_tb.reason, out_player_tb.out_player_created_at FROM player_tb left outer join out_player_tb ON out_player_tb.player_id=player_tb.id";
+        String query = "SELECT player_tb.id, player_tb.name, player_tb.position, out_player_tb.reason, out_player_tb.out_player_created_at FROM out_player_tb left outer join player_tb ON out_player_tb.player_id=player_tb.id";
         try(Statement statement = connection.createStatement()) {
             try (ResultSet resultSet = statement.executeQuery(query)){
                 while (resultSet.next()){
