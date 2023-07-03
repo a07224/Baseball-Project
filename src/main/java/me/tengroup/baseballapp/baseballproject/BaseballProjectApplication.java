@@ -1,10 +1,10 @@
 package me.tengroup.baseballapp.baseballproject;
 
 import me.tengroup.baseballapp.baseballproject.data.db.DBConnection;
-import me.tengroup.baseballapp.baseballproject.data.domain.OutPlayerRequestDTO;
-import me.tengroup.baseballapp.baseballproject.data.domain.PlayerRequestDTO;
-import me.tengroup.baseballapp.baseballproject.data.domain.StadiumRequestDTO;
-import me.tengroup.baseballapp.baseballproject.data.domain.TeamRequestDTO;
+import me.tengroup.baseballapp.baseballproject.data.dto.OutPlayerRequestDTO;
+import me.tengroup.baseballapp.baseballproject.data.dto.PlayerRequestDTO;
+import me.tengroup.baseballapp.baseballproject.data.dto.StadiumRequestDTO;
+import me.tengroup.baseballapp.baseballproject.data.dto.TeamRequestDTO;
 import me.tengroup.baseballapp.baseballproject.model.player.Player;
 import me.tengroup.baseballapp.baseballproject.model.stadium.Stadium;
 import me.tengroup.baseballapp.baseballproject.model.team.Team;

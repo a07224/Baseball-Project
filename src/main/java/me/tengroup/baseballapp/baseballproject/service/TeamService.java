@@ -1,14 +1,17 @@
 package me.tengroup.baseballapp.baseballproject.service;
 
+import lombok.RequiredArgsConstructor;
 import me.tengroup.baseballapp.baseballproject.data.db.DBConnection;
-import me.tengroup.baseballapp.baseballproject.data.domain.TeamRequestDTO;
+import me.tengroup.baseballapp.baseballproject.data.dto.TeamRequestDTO;
 import me.tengroup.baseballapp.baseballproject.model.team.Team;
 import me.tengroup.baseballapp.baseballproject.model.team.TeamDAO;
+import org.springframework.stereotype.Service;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
-
+@RequiredArgsConstructor
+@Service
 public class TeamService {
     private Connection connection = DBConnection.getInstance();
     private TeamDAO teamDAO = new TeamDAO(connection);

@@ -1,6 +1,6 @@
 package me.tengroup.baseballapp.baseballproject.model.outPlayer;
 
-import me.tengroup.baseballapp.baseballproject.data.domain.OutPlayerRequestDTO;
+import me.tengroup.baseballapp.baseballproject.data.dto.OutPlayerRequestDTO;
 
 import java.sql.*;
 import java.util.ArrayList;
